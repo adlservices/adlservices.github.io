@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Config File Generator</title>
+</head>
+<body>
+    <form id="configForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required><br><br>
+        
+        <label for="licenceNumber">Licence Number:</label>
+        <input type="text" id="licenceNumber" name="licenceNumber" required><br><br>
+        
+        <label for="birthDate">Birth Date:</label>
+        <input type="date" id="birthDate" name="birthDate" required><br><br>
+        
+        <label for="cardIdNumber">Card ID Number:</label>
+        <input type="text" id="cardIdNumber" name="cardIdNumber" required><br><br>
+        
+        <label for="activeTillDate">Active Till Date:</label>
+        <input type="date" id="activeTillDate" name="activeTillDate" required><br><br>
+        
+        <button type="button" onclick="downloadConfigFile()">Click to confirm details</button>
+    </form>
+
+    <script>
+        function downloadConfigFile() {
+            const form = document.getElementById('configForm');
+            const formData = new FormData(form);
+            const jsonObject = {};
+
+            formData.forEach((value, key) => {
+                jsonObject[key] = value;
+            });
+
+            const jsonString = JSON.stringify(jsonObject, null, 2);
+            const blob = new Blob([jsonString], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'config.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
