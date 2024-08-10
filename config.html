@@ -4,35 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Config File Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <form id="configForm">
-        <label for="userName">Full Name:</label>
-        <input type="text" id="username" name="username" required><br><br>
-        
-        <label for="userAddress">Address:</label>
-        <input type="text" id="address" name="address" required><br><br>
-        
-        <label for="userLicence">Licence Number:</label>
-        <input type="text" id="licenceNumber" name="licenceNumber" required><br><br>
-        
-        <label for="birthDate">Birth Date:</label>
-        <input type="date" id="birthDate" name="birthDate" required><br><br>
-        
-        <button type="button" onclick="downloadConfigFile()">Click to confirm details</button>
-    </form>
+    <div class="container">
+        <h1>Config File Generator</h1>
+        <form id="configForm">
+            <label for="userName">Full Name:</label>
+            <input type="text" id="userName" name="userName" placeholder="JOHN JAMES SMITH" required>
+            
+            <label for="userAddress">Address:</label>
+            <input type="text" id="Address" name="Address" placeholder="29 ROBE TCE MEDINDIE SA 5081" required>
+            
+            <label for="userLicence">Licence Number:</label>
+            <input type="text" id="userLicence" name="userLicence" placeholder="AB1234" required>
+            
+            <label for="birthDate">Birth Date:</label>
+            <input type="text" id="birthDate" name="birthDate" placeholder="31/01/2004" required>
+            
+            <label for="idNumber">Card ID Number:</label>
+            <input type="text" id="idNumber" name="idNumber" placeholder="D02965491" required>
+            
+            <label for="activeTillDate">Active Till Date:</label>
+            <input type="text" id="activeTill" name="activeTill" placeholder="17/10/2025" required>
+            
+            <button type="button" onclick="downloadConfigFile()">Click to confirm details</button>
+        </form>
+    </div>
 
     <script>
         function downloadConfigFile() {
             const form = document.getElementById('configForm');
             const formData = new FormData(form);
-            const jsonObject = {};
+            const jsonObject = {
+                userName: formData.get('userName').toUpperCase(),
+                userAddress: formData.get(' userAddress').toUpperCase(),
+                userLicence: formData.get('userLicence').toUpperCase(),
+                birthDate: formData.get('birthDate'),
+                idNumber: formData.get('idNumber').toUpperCase(),
+                activeTill: formData.get('activeTill')
+            };
 
-            formData.forEach((value, key) => {
-                jsonObject[key] = value;
-            });
-
-            const jsonString = JSON.stringify(jsonObject, null, 2);
+            const jsonArray = [jsonObject];
+            const jsonString = JSON.stringify(jsonArray, null, 4);
             const blob = new Blob([jsonString], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
