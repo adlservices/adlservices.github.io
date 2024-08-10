@@ -42,7 +42,7 @@
             <input type="text" id="userName" name="userName" placeholder="JOHN JAMES SMITH" required>
             
             <label for="userAddress">Address:</label>
-            <input type="text" id="Address" name="Address" placeholder="29 ROBE TCE MEDINDIE SA 5081" required>
+            <input type="text" id="userAddress" name="userAddress" placeholder="29 ROBE TCE MEDINDIE SA 5081" required>
             
             <label for="userLicence">Licence Number:</label>
             <input type="text" id="userLicence" name="userLicence" placeholder="AB1234" required>
@@ -53,7 +53,7 @@
             <label for="idNumber">Card ID Number:</label>
             <input type="text" id="idNumber" name="idNumber" placeholder="D02965491" required>
             
-            <label for="activeTillDate">Active Till Date:</label>
+            <label for="activeTill">Active Till Date:</label>
             <input type="text" id="activeTill" name="activeTill" placeholder="17/10/2025" required>
             
             <button type="button" onclick="downloadConfigFile()">Click to confirm details</button>
@@ -66,7 +66,7 @@
             const formData = new FormData(form);
             const jsonObject = {
                 userName: formData.get('userName').toUpperCase(),
-                userAddress: formData.get(' userAddress').toUpperCase(),
+                userAddress: formData.get('userAddress').toUpperCase(),
                 userLicence: formData.get('userLicence').toUpperCase(),
                 birthDate: formData.get('birthDate'),
                 idNumber: formData.get('idNumber').toUpperCase(),
