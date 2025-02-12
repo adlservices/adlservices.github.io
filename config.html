@@ -53,8 +53,8 @@
             <label for="idNumber">Card ID Number:</label>
             <input type="text" id="idNumber" name="idNumber" placeholder="D02965491" required>
             
-            <label for="activeTill">Active Till Date:</label>
-            <input type="text" id="activeTill" name="activeTill" placeholder="17/10/2025" required>
+            <label for="activeTillDate">Active Till Date:</label>
+            <input type="text" id="activeTillDate" name="activeTillDate" placeholder="17/10/2025" required>
             
             <button type="button" onclick="downloadConfigFile()">Click to confirm details</button>
         </form>
@@ -70,7 +70,7 @@
                 userLicence: formData.get('userLicence').toUpperCase(),
                 birthDate: formData.get('birthDate'),
                 idNumber: formData.get('idNumber').toUpperCase(),
-                activeTill: formData.get('activeTillDate')
+                activeTillDate: formData.get('activeTillDate')
             };
 
             const jsonArray = [jsonObject];
